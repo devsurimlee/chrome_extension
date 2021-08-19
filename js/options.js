@@ -1,5 +1,6 @@
 let page = document.getElementById("buttonDiv");
 let selectedClassName = "current";
+let textBox = document.getElementById('textBox');
 const presetButtonColors = ["#3aa757", "#e8453c", "#f9bb2d", "#4688f1"];
 
 // Reacts to a button click by marking the selected button and saving the selection
@@ -18,6 +19,8 @@ function handleButtonClick(event) {
     let color = event.target.dataset.color;
     event.target.classList.add(selectedClassName);
     chrome.storage.sync.set({ color });
+
+    textBox.innerHTML = '배경색: ' + color;
 }
 
 // Add a button to the page for each supplied color
@@ -41,6 +44,7 @@ function constructOptions(buttonColors) {
             // …and register a listener for when that button is clicked
             button.addEventListener("click", handleButtonClick);
             page.appendChild(button);
+
         }
     });
 }
