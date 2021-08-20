@@ -1,9 +1,8 @@
 let page = document.getElementById("buttonDiv");
 let selectedClassName = "current";
 let textBox = document.getElementById('textBox');
-const presetButtonColors = ["#3aa757", "#e8453c", "#f9bb2d", "#4688f1"];
+const presetButtonColors = ["#3aa757", "#e8453c", "#f9bb2d", "#4688f1", "#bfbfbf"];
 
-// Reacts to a button click by marking the selected button and saving the selection
 // 선택한 버튼을 표시하고 선택 항목을 저장하여 버튼 클릭에 반응합니다.
 function handleButtonClick(event) {
     // Remove styling from the previously selected color
@@ -14,7 +13,6 @@ function handleButtonClick(event) {
         current.classList.remove(selectedClassName);
     }
 
-    // Mark the button as selected
     // 버튼을 선택된 것으로 표시
     let color = event.target.dataset.color;
     event.target.classList.add(selectedClassName);
@@ -23,7 +21,6 @@ function handleButtonClick(event) {
     textBox.innerHTML = '배경색: ' + color;
 }
 
-// Add a button to the page for each supplied color
 // 제공된 각 색상에 대해 페이지에 버튼 추가
 
 function constructOptions(buttonColors) {
