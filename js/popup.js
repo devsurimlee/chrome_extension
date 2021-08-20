@@ -2,7 +2,7 @@
 let changeColor = document.getElementById("changeColor");
 
 chrome.storage.sync.get("color", ({ color }) => {
-    changeColor.style.backgroundColor = green;
+    changeColor.style.backgroundColor = color;
 });
 
 // 버튼 클릭 시, 현재 페이지에 setPageBackgroundColor 삽입
