@@ -7,26 +7,21 @@ chrome.storage.sync.get("color", ({ color }) => {
     changeColor.style.backgroundColor = color;
 });
 
-changeColor.addEventListener("click", async (e) => {
-    await btnClickEvent('changeColor');
+document.addEventListener("click", async (e) => {
+    await btnClickEvent(e.target);
 });
 
-resetColor.addEventListener("click", async () => {
-    await btnClickEvent('resetColor');
-
-});
-
-async function btnClickEvent(color) {
+async function btnClickEvent(object) {
     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-    if(color == 'changeColor') {
+    if(object == changeColor) {
         chrome.scripting.executeScript({
             target: { tabId: tab.id },
             function: setPageBackgroundColor,
         });
     }
 
-    if(color == 'resetColor') {
+    if(object == resetColor) {
         chrome.scripting.executeScript({
             target: { tabId: tab.id },
             function: resetPageBackgroundColor,
