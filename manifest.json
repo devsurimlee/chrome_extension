@@ -6,22 +6,33 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["storage", "activeTab", "scripting"],
-  "action": {
-    "default_title" : "click me",
-//    "default_popup": "/view/popup.html",
-    "default_icon": {
-      "16": "/images/on.png",
-      "32": "/images/on.png",
-      "48": "/images/on.png",
-      "128": "/images/on.png"
+  "permissions": [
+    "activeTab",
+    "browsingData",
+    "clipboardWrite",
+    "contentSettings",
+    "cookies",
+    "history",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "action": {},
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "/js/content.js"
+      ]
     }
-  },
+  ],
   "icons": {
     "16": "/images/on.png",
     "32": "/images/on.png",
     "48": "/images/on.png",
     "128": "/images/on.png"
   },
-  "options_page" : "/view/options.html"
+  "options_page": "/view/options.html"
 }

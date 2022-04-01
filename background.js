@@ -1,25 +1,33 @@
-
 let isSwitchON = true
 const onIconImg = "/images/on.png";
 const offIconImg = "/images/off.png";
 
 
-
 //아이콘 클릭 이벤트
 chrome.action.onClicked.addListener((tab) => {
-	if(isSwitchON) {
+	if (isSwitchON) {
 		isSwitchON = false
-		chrome.action.setIcon({path: offIconImg});
-
+		changeIcon(offIconImg);
 	} else {
 		isSwitchON = true
-		chrome.action.setIcon({path: onIconImg});
+		changeIcon(onIconImg);
 	}
+	handleImage();
 });
 
 
+function changeIcon(img) {
+	chrome.action.setIcon({path: img});
+}
 
-
+function handleImage() {
+	if (chrome.contentSettings) {
+		chrome.contentSettings["images"].set({
+			primaryPattern: "<all_urls>",
+			setting: isSwitchON ? 'allow' : 'block'
+		});
+	}
+}
 
 
 ////////////////////////////////////////////////
