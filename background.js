@@ -1,6 +1,6 @@
 let isSwitchON = true
-const onIconImg = "/images/on.png";
-const offIconImg = "/images/off.png";
+const onIconImg = "/images/on-48.png";
+const offIconImg = "/images/off-48.png";
 
 
 //아이콘 클릭 이벤트
@@ -24,7 +24,7 @@ function handleImage() {
 	if (chrome.contentSettings) {
 		chrome.contentSettings["images"].set({
 			primaryPattern: "<all_urls>",
-			setting: isSwitchON ? 'allow' : 'block'
+			setting: isSwitchON ? 'block': 'allow'
 		});
 	}
 }

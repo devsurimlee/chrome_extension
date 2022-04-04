@@ -32,7 +32,8 @@
     "16": "/images/on.png",
     "32": "/images/on.png",
     "48": "/images/on.png",
-    "128": "/images/on.png"
+    "128": "/images/on.png",
+    "512": "/images/on.png"
   },
   "options_page": "/view/options.html"
 }
