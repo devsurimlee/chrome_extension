@@ -1,0 +1,18 @@
+:root {
+    --color-gray: #eaeaea;
+    --color-red: #d9392a;
+}
+
+
+html {
+    min-width: 300px;
+    min-height: 300px;
+}
+
+body {
+    background: var(--color-gray);
+}
+
+div {
+    background: white;
+}

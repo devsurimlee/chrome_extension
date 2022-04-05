@@ -3,15 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/popup.css">
 
 </head>
 <body>
+<h2>Simeple Image Block</h2>
 
-    <button id="changeColor">change</button>
-    <button id="resetColor">reset</button>
-    <script src="/js/popup.js"></script>
+<div>
+    Image block
+    <div>
+        <input type="radio" name="image-block" id="onImageBlockBtn">
+        <label>on</label>
+        <input type="radio" name="image-block" id="offImageBlockBtn" checked>
+        <label>off</label>
+    </div>
+</div>
 
+<div>
+    Auto Refresh
+    <div>
+        <input type="radio" name="refresh" id="onRefreshBtn">
+        <label>on</label>
+        <input type="radio" name="refresh" id="offRefreshBtn" checked>
+        <label>off</label>
+    </div>
+</div>
+
+<script src="/js/popup.js"></script>
 </body>
 </html>
 
