@@ -17,7 +17,14 @@
     "storage",
     "tabs"
   ],
-  "action": {},
+  "action": {
+    "default_popup" : "/view/popup.html",
+    "default_icon": {
+      "16": "images/off.png",
+      "24": "images/off.png",
+      "32": "images/off.png"
+    }
+  },
   "content_scripts": [
     {
       "matches": [

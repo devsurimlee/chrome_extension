@@ -1,4 +1,4 @@
-let isSwitchON = true
+let isSwitchON = false
 const onIconImg = "/images/on-48.png";
 const offIconImg = "/images/off-48.png";
 
@@ -24,7 +24,7 @@ function handleImage() {
 	if (chrome.contentSettings) {
 		chrome.contentSettings["images"].set({
 			primaryPattern: "<all_urls>",
-			setting: isSwitchON ? 'block': 'allow'
+			setting: isSwitchON ? 'block' : 'allow'
 		});
 	}
 }
