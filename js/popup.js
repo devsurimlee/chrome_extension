@@ -14,10 +14,12 @@ const offIconImg = "/images/off-48.png";
 chrome.storage.sync.get('isSwitchON', (e) => {
 	if (e.isSwitchON) {
 		onImageBlockBtn.checked = true;
+		isSwitchON = true
 		changeIcon(onImageBlockBtn);
 		handleImageBlock(onImageBlockBtn);
 	} else {
 		offImageBlockBtn.checked = true;
+		isSwitchON = false;
 		changeIcon(offImageBlockBtn);
 		handleImageBlock(offImageBlockBtn);
 	}
@@ -28,8 +30,10 @@ chrome.storage.sync.get('isSwitchON', (e) => {
 chrome.storage.sync.get('isAutoRefresh', (e) => {
 	if (e.isAutoRefresh) {
 		onRefreshBtn.checked = true;
+		isAutoRefresh = true;
 	} else {
 		offRefreshBtn.checked = true;
+		isAutoRefresh = false;
 	}
 });
 
