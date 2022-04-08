@@ -5,13 +5,14 @@ let onRefreshBtn = document.getElementById("onRefreshBtn");
 let offRefreshBtn = document.getElementById("offRefreshBtn");
 
 let isSwitchON = false;
+let isAutoRefresh = false;
 
 const onIconImg = "/images/on-48.png";
 const offIconImg = "/images/off-48.png";
 
 //이미지 on/off 라디오 저장
-chrome.storage.sync.get('isSwitchON', (e)=> {
-	if(e.isSwitchON) {
+chrome.storage.sync.get('isSwitchON', (e) => {
+	if (e.isSwitchON) {
 		onImageBlockBtn.checked = true;
 		changeIcon(onImageBlockBtn);
 		handleImageBlock(onImageBlockBtn);
@@ -23,6 +24,16 @@ chrome.storage.sync.get('isSwitchON', (e)=> {
 });
 
 
+//새로고침 on/off 라디오 저장
+chrome.storage.sync.get('isAutoRefresh', (e) => {
+	if (e.isAutoRefresh) {
+		onRefreshBtn.checked = true;
+	} else {
+		offRefreshBtn.checked = true;
+	}
+});
+
+
 document.addEventListener("click", async (e) => {
 	await btnClickEvent(e.target);
 });
@@ -30,9 +41,24 @@ document.addEventListener("click", async (e) => {
 async function btnClickEvent(obj) {
 	let [tab] = await chrome.tabs.query({active: true, currentWindow: true});
 
-	changeIcon(obj);
-	handleImageBlock(obj);
+	if (obj == onImageBlockBtn || obj == offImageBlockBtn) {
+		changeIcon(obj);
+		handleImageBlock(obj);
 
+		if(isAutoRefresh) {
+			chrome.scripting.executeScript({
+				target: {tabId: tab.id},
+				function : goRefresh,
+			})
+		}
+	}
+
+	if (obj == onRefreshBtn || obj == offRefreshBtn) {
+		handleAutoRefresh(obj);
+	}
+}
+function goRefresh() {
+	location.reload();
 }
 
 function changeIcon(obj) {
@@ -58,4 +84,13 @@ function handleImageBlock(obj) {
 			setting: isSwitchON ? 'block' : 'allow'
 		});
 	}
+}
+
+function handleAutoRefresh(obj) {
+	if (obj == onRefreshBtn) {
+		isAutoRefresh = true;
+	} else if (obj == offRefreshBtn) {
+		isAutoRefresh = false;
+	}
+	chrome.storage.sync.set({isAutoRefresh});
 }
