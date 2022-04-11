@@ -8,22 +8,20 @@
 </head>
 <body>
 <h2>Image Block</h2>
-
-
-<div>
+<div class="content">
     Image block
-    <input type="radio" name="image-block" id="onImageBlockBtn">
-    <label>on</label>
-    <input type="radio" name="image-block" id="offImageBlockBtn" checked>
-    <label>off</label>
+    <label class="switch">
+        <input type="checkbox" id="imageBlockBtn">
+        <span class="slider round"></span>
+    </label>
 </div>
 
-<div>
+<div class="content">
     Auto Refresh
-    <input type="radio" name="refresh" id="onRefreshBtn">
-    <label>on</label>
-    <input type="radio" name="refresh" id="offRefreshBtn" checked>
-    <label>off</label>
+    <label class="switch">
+        <input type="checkbox" id="refreshBtn">
+        <span class="slider round"></span>
+    </label>
 </div>
 
 <script src="/js/popup.js"></script>
