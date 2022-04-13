@@ -1,7 +1,7 @@
 {
   "name": "Image Block",
   "description": "간단하게 이미지를 차단합니다.",
-  "version": "0.1",
+  "version": "0.2",
   "manifest_version": 3,
   "background": {
     "service_worker": "/js/background.js"
