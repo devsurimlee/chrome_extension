@@ -1,8 +1,9 @@
-let imageBlockBtn = document.getElementById("imageBlockBtn");
-let refreshBtn = document.getElementById("refreshBtn");
+const imageBlockBtn = document.getElementById("imageBlockBtn");
+const refreshBtn = document.getElementById("refreshBtn");
 
 const onIconImg = "/images/on-48.png";
 const offIconImg = "/images/off-48.png";
+
 
 //이미지 on/off 라디오 저장
 chrome.storage.sync.get('isSwitchON', (e) => {
@@ -29,6 +30,7 @@ chrome.storage.sync.get('isAutoRefresh', (e) => {
 document.addEventListener("click", async (e) => {
 	await btnClickEvent(e.target);
 });
+
 
 async function btnClickEvent(obj) {
 	let [tab] = await chrome.tabs.query({active: true, currentWindow: true});
@@ -76,3 +78,6 @@ function handleImageBlock() {
 function handleAutoRefresh(check) {
 	chrome.storage.sync.set({'isAutoRefresh': refreshBtn.checked});
 }
+
+
+
