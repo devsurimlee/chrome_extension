@@ -4,26 +4,29 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/css/popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
 </head>
 <body>
-<h2>Image Block</h2>
-
-
-<div>
-    Image block
-    <input type="radio" name="image-block" id="onImageBlockBtn">
-    <label>on</label>
-    <input type="radio" name="image-block" id="offImageBlockBtn" checked>
-    <label>off</label>
+<div class="popup-title">
+    <h2>Image Block &#9940</h2>
+</div>
+<div class="content">
+    <span class="option-title">Image block</span>
+<!--    <i class="far fa-question-circle tooltip"><span class="tooltip-text">test1</span></i>-->
+    <label class="switch">
+        <input type="checkbox" id="imageBlockBtn">
+        <span class="slider round"></span>
+    </label>
 </div>
 
-<div>
-    Auto Refresh
-    <input type="radio" name="refresh" id="onRefreshBtn">
-    <label>on</label>
-    <input type="radio" name="refresh" id="offRefreshBtn" checked>
-    <label>off</label>
+<div class="content">
+    <span class="option-title">Auto Refresh</span>
+<!--    <i class="far fa-question-circle tooltip"><span class="tooltip-text">test2</span></i>-->
+    <label class="switch">
+        <input type="checkbox" id="refreshBtn">
+        <span class="slider round"></span>
+    </label>
 </div>
 
 <script src="/js/popup.js"></script>
