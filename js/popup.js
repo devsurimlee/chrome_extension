@@ -1,8 +1,8 @@
 const imageBlockBtn = document.getElementById("imageBlockBtn");
 const refreshBtn = document.getElementById("refreshBtn");
 
-const onIconImg = "/images/on-48.png";
-const offIconImg = "/images/off-48.png";
+const onIconImg = "/images/on.png";
+const offIconImg = "/images/off.png";
 
 
 //이미지 on/off 라디오 저장

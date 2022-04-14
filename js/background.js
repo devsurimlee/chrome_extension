@@ -1,5 +1,5 @@
-const onIconImg = "/images/on-48.png";
-const offIconImg = "/images/off-48.png";
+const onIconImg = "/images/on.png";
+const offIconImg = "/images/off.png";
 
 
 chrome.storage.sync.get('isSwitchON', (e) => {

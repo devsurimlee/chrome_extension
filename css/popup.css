@@ -2,6 +2,7 @@
     --color-light-gray: #eaeaea;
     --color-gray: #ccc;
     --color-red: #d9392a;
+    --color-primary: hsl(171, 100%, 41%);
 }
 
 html {
