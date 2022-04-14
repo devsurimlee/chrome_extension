@@ -2,14 +2,50 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/button.css">
+    <title>Image Block - Options</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    <link rel="stylesheet" href="/css/options.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma-rtl.min.css">
+
 </head>
 <body>
-<div id="buttonDiv">
+
+<div class="container is-max-desktop">
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <p class="title">
+                Image Block &#9940
+            </p>
+            <p class="subtitle">
+                for chrome extension
+            </p>
+        </div>
+    </section>
+
+    <div class="card">
+        <div class="card-content">
+            <div class="content">
+                <blockquote>
+                    <h2>- White List</h2>
+                    <ul>
+                        <li>You can add websites to exclude from Image Block.</li>
+                        <li>Please add multiple websites with line breaks.</li>
+                    </ul>
+                </blockquote>
+
+                <textarea class="textarea has-fixed-size is-large is-primary" placeholder="www.google.com"></textarea>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <a href="#" class="card-footer-item">Save</a>
+            <a href="#" class="card-footer-item">Remove all</a>
+        </footer>
+
+
+    </div>
 </div>
-<div>
-    <p>원하는 배경색을 선택하세요.</p><p id="textBox"></p>
-</div>
+
+
 </body>
 <script src="/js/options.js"></script>
 </html>
