@@ -33,7 +33,8 @@ document.addEventListener("click", async (e) => {
 
 
 async function btnClickEvent(obj) {
-	let [tab] = await chrome.tabs.query({active: true, currentWindow: true});
+	const tabOption = { active: true, currentWindow: true };
+	let [tab] = await chrome.tabs.query(tabOption);
 
 	if (obj == imageBlockBtn) {
 		changeIcon(imageBlockBtn.checked);
