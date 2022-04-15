@@ -40,6 +40,10 @@ async function btnClickEvent(obj) {
 		changeIcon(imageBlockBtn.checked);
 		handleImageBlock();
 
+		if(tab.url.includes("chrome://") || tab.url.includes("chrome-extension://")) {
+			return;
+		}
+
 		if (refreshBtn.checked) {
 			chrome.scripting.executeScript({
 				target: {tabId: tab.id},
