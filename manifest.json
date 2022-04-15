@@ -25,16 +25,7 @@
       "32": "images/off.png"
     }
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "/js/content.js"
-      ]
-    }
-  ],
+
   "icons": {
     "16": "/images/on.png",
     "32": "/images/on.png",
