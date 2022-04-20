@@ -12,7 +12,8 @@ document.addEventListener("click", async (e) => {
 });
 
 async function btnClickEvent(object) {
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    const tabOption = { active: true, currentWindow: true };
+    let [tab] = await chrome.tabs.query(tabOption);
 
     if(object == changeColor) {
         chrome.scripting.executeScript({

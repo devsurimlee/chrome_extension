@@ -2,31 +2,154 @@ const onIconImg = "/images/on.png";
 const offIconImg = "/images/off.png";
 
 
-chrome.storage.sync.get('isSwitchON', (e) => {
-	if (e.isSwitchON) {
+chrome.storage.sync.get('isSwitchOn', (e) => {
+	if (e.isSwitchOn) {
 		changeIcon(onIconImg);
 	} else {
 		changeIcon(offIconImg);
 	}
 });
 
+//새탭열기 & 새로고침 & url 이동 등
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+	chrome.storage.sync.get('isSwitchOn', (e) => {
+		if (e.isSwitchOn) {
+			chrome.storage.sync.get("whiteList", (e) => {
+				if (e.whiteList != 'undefined' && tab.status == 'loading' && isCorrectUrl(tab.url)) {
+					let whiteListArr = e.whiteList.split(',');
+					for (let i = 0; i < whiteListArr.length; i++) {
+						if (tab.url.includes(whiteListArr[i].trim())) {
+							//화이트리스트에 있음
+							if (chrome.contentSettings) {
+								chrome.contentSettings["images"].set({
+									primaryPattern: "<all_urls>",
+									setting: 'allow'
+								});
+								changeIcon(offIconImg);
+								return;
+							}
+						}
+						//화이트리스트에 없음
+						if (chrome.contentSettings) {
+							chrome.contentSettings["images"].set({
+								primaryPattern: "<all_urls>",
+								setting: 'block'
+							});
+							changeIcon(onIconImg);
+						}
+					}
+				}
+			});
+
+		}
+	});
+});
+
+//탭 활성화 이벤트
+chrome.tabs.onActivated.addListener(async activeInfo => {
+	const tabOption = {active: true, currentWindow: true};
+	let [tab] = await chrome.tabs.query(tabOption);
+
+	chrome.storage.sync.get('isSwitchOn', (e) => {
+		if (e.isSwitchOn) {
+			chrome.storage.sync.get("whiteList", (e) => {
+				if (e.whiteList != 'undefined') {
+					let whiteListArr = e.whiteList.split(',');
+					for (let i = 0; i < whiteListArr.length; i++) {
+						//화이트리스트에 있음
+						if (tab.url.includes(whiteListArr[i].trim())) {
+							if (chrome.contentSettings) {
+								chrome.contentSettings["images"].set({
+									primaryPattern: "<all_urls>",
+									setting: 'allow'
+								});
+								changeIcon(offIconImg);
+								return;
+							}
+						}
+						//화이트리스트에 없음
+						if (chrome.contentSettings) {
+							chrome.contentSettings["images"].set({
+								primaryPattern: "<all_urls>",
+								setting: 'block'
+							});
+							changeIcon(onIconImg);
+						}
+					}
+				}
+			});
+
+		}
+	});
+});
+
+
+function isCorrectUrl(url) {
+	if (!url.includes("chrome://") && !url.includes("chrome-extension://")) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 function changeIcon(img) {
 	chrome.action.setIcon({path: img});
 }
 
 
-// let isSwitchON = false
+//////////////////////////////////
+// chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => handleCreateTab());
+// chrome.tabs.onActivated.addListener(activeInfo => handleMoveTab());
+//
+//
+// async function handleCreateTab() {
+// 	const tabOption = {active: true, currentWindow: true};
+// 	let [tab] = await chrome.tabs.query(tabOption);
+// 	getTabUrl(tab);
+// }
+//
+// async function handleMoveTab() {
+// 	const tabOption = {active: true, currentWindow: true};
+// 	let [tab] = await chrome.tabs.query(tabOption);
+// 	getTabUrl(tab);
+// }
+//
+// function getTabUrl(tab) {
+// 	if (tab.status == 'loading' && !tab.url.includes("chrome://") && !tab.url.includes("chrome-extension://")) {
+// 		let url = tab.url;
+// 		chrome.storage.sync.get("whiteList", (e) => {
+// 			if (e.whiteList.length > 0) {
+// 				let whiteListArr = e.whiteList.split(',');
+// 				for (let i = 0; i < whiteListArr.length; i++) {
+// 					if (url.includes(whiteListArr[i].trim())) {
+// 						if (chrome.contentSettings) {
+// 							chrome.contentSettings["images"].set({
+// 								primaryPattern: "<all_urls>",
+// 								setting: 'allow'
+// 							});
+// 						}
+// 						chrome.action.setIcon({path: offIconImg});
+// 						return;
+// 					}
+// 				}
+// 				chrome.action.setIcon({path: onIconImg});
+// 			}
+// 		});
+// 	}
+// }
+
+// let isSwitchOn = false
 // const onIconImg = "/images/on-48.png";
 // const offIconImg = "/images/off-48.png";
 
 
 //아이콘 클릭 이벤트
 // chrome.action.onClicked.addListener((tab) => {
-// 	if (isSwitchON) {
-// 		isSwitchON = false
+// 	if (isSwitchOn) {
+// 		isSwitchOn = false
 // 		changeIcon(offIconImg);
 // 	} else {
-// 		isSwitchON = true
+// 		isSwitchOn = true
 // 		changeIcon(onIconImg);
 // 	}
 // 	handleImage();
@@ -41,7 +164,7 @@ function changeIcon(img) {
 // 	if (chrome.contentSettings) {
 // 		chrome.contentSettings["images"].set({
 // 			primaryPattern: "<all_urls>",
-// 			setting: isSwitchON ? 'block' : 'allow'
+// 			setting: isSwitchOn ? 'block' : 'allow'
 // 		});
 // 	}
 // }
