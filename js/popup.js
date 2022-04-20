@@ -6,8 +6,8 @@ const offIconImg = "/images/off.png";
 
 
 //이미지 on/off 라디오 저장
-chrome.storage.sync.get('isSwitchON', (e) => {
-	if (e.isSwitchON) {
+chrome.storage.sync.get('isSwitchOn', (e) => {
+	if (e.isSwitchOn) {
 		imageBlockBtn.checked = true;
 	} else {
 		imageBlockBtn.checked = false;
@@ -70,7 +70,7 @@ function changeIcon(check) {
 }
 
 function handleImageBlock() {
-	chrome.storage.sync.set({'isSwitchON': imageBlockBtn.checked});
+	chrome.storage.sync.set({'isSwitchOn': imageBlockBtn.checked});
 
 	if (chrome.contentSettings) {
 		chrome.contentSettings["images"].set({

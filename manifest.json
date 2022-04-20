@@ -17,6 +17,9 @@
     "storage",
     "tabs"
   ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "action": {
     "default_popup" : "/view/popup.html",
     "default_icon": {
@@ -25,7 +28,17 @@
       "32": "images/off.png"
     }
   },
-
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at" : "document_end",
+      "js": [
+        "/js/content.js"
+      ]
+    }
+  ],
   "icons": {
     "16": "/images/on.png",
     "32": "/images/on.png",
